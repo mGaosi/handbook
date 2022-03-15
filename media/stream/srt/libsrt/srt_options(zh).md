@@ -630,14 +630,10 @@ which decreases the maximum possible value for `SRTO_PAYLOADSIZE`.
 | -------------------- | ----- | ------- | ---------- | ------- | -------- | ------ | --- | ------ |
 | `SRTO_PEERIDLETIMEO` | 1.3.3 | pre     | `int32_t`  | ms      | 5000     | 0..    | RW  | GSD+   |
 
-- The maximum time in `[ms]` to wait until another packet is received from a peer 
-since the last such packet reception. If this time is passed, the connection is 
-considered broken on timeout.
-
+- The maximum time in `[ms]` to wait until another packet is received from a peer since the last such packet reception. If this time is passed, the connection is considered broken on timeout.
+- 自上次接收到另一个数据包以来，等待从对等方接收到另一个数据包的最长时间（以`ms`为单位）。如果超过此时间，则被视为连接超时断开。
 
 [Return to list](#list-of-options)
-
-
 
 #### SRTO_PEERLATENCY
 
@@ -682,15 +678,12 @@ considered broken on timeout.
 | OptName           | Since | Binding | Type       |  Units  |   Default  | Range  | Dir | Entity |
 | ----------------- | ----- | ------- | ---------- | ------- | ---------- | ------ | --- | ------ |
 | `SRTO_RCVKMSTATE` | 1.2.0 |         | `int32_t`  | enum    |            |        | R   | S      |
- 
+
 - KM state on the agent side when it's a receiver.
 
 - Values defined in enum [`SRT_KM_STATE`](#2-srt_km_state).
 
-
 [Return to list](#list-of-options)
-
-
 
 #### SRTO_RCVLATENCY
 
@@ -698,7 +691,7 @@ considered broken on timeout.
 | ----------------- | ----- | ------- | ---------- | ------- | ---------- | ------ | --- | ------ |
 | `SRTO_RCVLATENCY` | 1.3.0 | pre     | `int32_t`  | msec    | *          | 0..    | RW  | GSD    |
 
-- Latency value in the receiving direction. This value is only significant when`SRTO_TSBPDMODE` is set to true.
+- Latency value in the receiving direction. This value is only significant when `SRTO_TSBPDMODE` is set to true.
 
 - Latency refers to the time that elapses from the moment a packet is sent to the moment when it's delivered to a receiver application. The SRT latency setting should be a buffer large enough to cover the time spent for sending, unexpectedly extended RTT time, and the time needed to retransmit any lost UDP packet. The effective latency value will be the maximum between the `SRTO_RCVLATENCY` value and the value of `SRTO_PEERLATENCY` set by the peer side. **This option in pre-1.3.0 version is available only as** `SRTO_LATENCY`. Note that the real latency value may be slightly different than this setting due to the impossibility of perfectly measuring exactly the same point in time at both parties simultaneously. What is important with latency is that its actual value, once set with the connection, is kept constant throughout the duration of a connection.
 
