@@ -140,7 +140,7 @@ int srt_setsockflag(SRTSOCKET socket,
 - I: 选项将由该组独占地获取和管理。
 - +：也允许通过`SRT_SOCKGROUPCONFIG`中由`SRT_create_config`准备的配置对象在组成员套接字上单独设置此选项。请注意，此设置可能会被组设置覆盖。
 
-## List of options：选项表
+## List of options - 选项表
 
 下表按选项名字母顺序列出了SRT套接字选项。选项详情如下:
 

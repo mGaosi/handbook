@@ -2,34 +2,18 @@
 Live streaming with SRT - guidelines
 ====================================
 
-SRT is primarily created for live streaming. Before you use it, you must keep
-in mind that Live Streaming is a process with its own rules, of which SRT
-fulfills only and exclusively the transmission part. The Live Streaming process
-consists of more parts.
-
+SRT is primarily created for live streaming. Before you use it, you must keep in mind that Live Streaming is a process with its own rules, of which SRT fulfills only and exclusively the transmission part. The Live Streaming process consists of more parts.
 
 Transmitting MPEG TS binary protocol over SRT
 =============================================
 
-MPEG-TS is the most important protocol commonly sent over internet using
-SRT, and the main reason for initiating this project. 
+MPEG-TS is the most important protocol commonly sent over internet using SRT, and the main reason for initiating this project.
 
-MPEG-TS consists of single units of 188 bytes. Multiplying `188*7` we get 1316, which 
-is the maximum product of 188 that is less than 1500 (`188*8=1504`), which is the 
-standard MTU size in Ethernet. The headers for the IP and UDP protocols occupy 28 bytes 
-of a standard MTU, leaving 1472 bytes, and SRT occupies next 16 bytes for its own header, 
-which leaves a maximum payload size of 1456 bytes. A 1316-byte cell is a good single 
-transport unit size for SRT, and it is also often used when sending MPEG-TS over UDP.
+MPEG-TS consists of single units of 188 bytes. Multiplying `188*7` we get 1316, which is the maximum product of 188 that is less than 1500 (`188*8=1504`), which is the standard MTU size in Ethernet. The headers for the IP and UDP protocols occupy 28 bytes of a standard MTU, leaving 1472 bytes, and SRT occupies next 16 bytes for its own header, which leaves a maximum payload size of 1456 bytes. A 1316-byte cell is a good single transport unit size for SRT, and it is also often used when sending MPEG-TS over UDP.
 
-Note that SRT isn't limited to MPEG-TS -- it can be applied to any "live streaming" data 
-transmission (as long as you use Live mode, which is the SRT default mode). You can use 
-any other suitable data format, and any intermediate protocol on top of MPEG-TS with 
-an extra header (this is an option that people often try with RTP) - note that
-1316 is the default maximum payload size, which can be changed using the
-`SRTO_PAYLOADSIZE` option to no more than 1456).
+Note that SRT isn't limited to MPEG-TS -- it can be applied to any "live streaming" data transmission (as long as you use Live mode, which is the SRT default mode). You can use any other suitable data format, and any intermediate protocol on top of MPEG-TS with an extra header (this is an option that people often try with RTP) - note that 1316 is the default maximum payload size, which can be changed using the `SRTO_PAYLOADSIZE` option to no more than 1456).
 
 However, the transmission must still satisfy the Live Streaming Requirements.
-
 
 Live Streaming Requirements
 ===========================

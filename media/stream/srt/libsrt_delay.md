@@ -39,16 +39,16 @@ __延迟测定方法：__
 
 |测试参数|平均编码延迟|平均传输延迟|平均解码延迟|总延迟|
 |-|-|-|-|-|
-|SRTO_LATENCY=0ms|16ms|45ms|85ms|146ms|
-|SRTO_LATENCY=1ms|16ms|47ms|85ms|148ms|
-|SRTO_LATENCY=5ms|16ms|49ms|85ms|150ms|
-|SRTO_LATENCY=10ms|16ms|53ms|85ms|154ms|
-|SRTO_LATENCY=20ms|16ms|61ms|85ms|162ms|
-|SRTO_LATENCY=30ms|16ms|71ms|85ms|172ms|
-|SRTO_LATENCY=40ms|16ms|81ms|85ms|182ms|
-|SRTO_LATENCY=50ms|16ms|91ms|85ms|192ms|
-|SRTO_LATENCY=100ms|16ms|141ms|85ms|242ms|
-|SRTO_LATENCY=200ms|16ms|241ms|85ms|342ms|
+|SRTO_LATENCY=0ms|16ms|45ms|47ms|108ms|
+|SRTO_LATENCY=1ms|16ms|47ms|47ms|110ms|
+|SRTO_LATENCY=5ms|16ms|49ms|47ms|112ms|
+|SRTO_LATENCY=10ms|16ms|53ms|47ms|116ms|
+|SRTO_LATENCY=20ms|16ms|61ms|47ms|124ms|
+|SRTO_LATENCY=30ms|16ms|71ms|47ms|134ms|
+|SRTO_LATENCY=40ms|16ms|81ms|47ms|144ms|
+|SRTO_LATENCY=50ms|16ms|91ms|47ms|154ms|
+|SRTO_LATENCY=100ms|16ms|141ms|47ms|204ms|
+|SRTO_LATENCY=200ms|16ms|241ms|47ms|304ms|
 
 > 平均传输延迟包含了MPEG-TS封装/解封装耗时，MPEG-TS封装耗时测试都小于1毫秒，解封装延迟固定2帧画面的数据按照帧率计算这里相当于40毫秒。
 
@@ -82,7 +82,7 @@ __延迟测定方法：__
 
 解码器使用NVDec异步解码，解码过程主要分为：码流解析，码流解码，帧画面输出。
 
-经过代码调试码流解析通常有2-3帧的延迟，按照50FPS计算大概是60毫秒，不知道其内部机制，在NVCodec的文档中看可以替换到ffmpeg的码流解析过程。
+经过代码调试码流解析通常有1帧的延迟，按照50FPS计算大概是20毫秒，不知道其内部机制，在NVCodec的文档中看可以替换到ffmpeg的码流解析过程。
 
 帧画面输出主要是显存拷贝到内存，通过是3毫秒，通过直接显存访问也可以进行优化。
 
