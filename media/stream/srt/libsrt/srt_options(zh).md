@@ -565,21 +565,11 @@ For details, see [Packet Filtering & FEC](packet-filtering-and-fec.md).
 | -------------------- | ----- | ------- | ---------- | ------- | -------- | ------ | --- | ------ |
 | `SRTO_PASSPHRASE`    | 0.0.0 | pre     | `string`   |         | ""       |[10..79]| W   | GSD    |
 
-- Sets the passphrase for encryption. This enables encryption on this party (or
-disables it, if an empty passphrase is passed).
+- Sets the passphrase for encryption. This enables encryption on this party (or disables it, if an empty passphrase is passed).
 
-- The passphrase is the shared secret between the sender and the receiver. It is 
-used to generate the Key Encrypting Key using [PBKDF2](http://en.wikipedia.org/wiki/PBKDF2) 
-(Password-Based Key Derivation Function 2). It is used on the receiver only if 
-the received data is encrypted.
+- The passphrase is the shared secret between the sender and the receiver. It is used to generate the Key Encrypting Key using [PBKDF2](http://en.wikipedia.org/wiki/PBKDF2) (Password-Based Key Derivation Function 2). It is used on the receiver only if the received data is encrypted.
 
-- Note that since the introduction of bidirectional support, there's only one 
-initial SEK to encrypt the stream (new keys after refreshing will be updated 
-independently), and there's no distinction between "service party that defines 
-the password" and "client party that is required to set matching password" - both 
-parties are equivalent, and in order to have a working encrypted connection, they 
-have to simply set the same passphrase. Otherwise the connection is rejected by 
-default (see also [`SRTO_ENFORCEDENCRYPTION`](#SRTO_ENFORCEDENCRYPTION)).
+- Note that since the introduction of bidirectional support, there's only one initial SEK to encrypt the stream (new keys after refreshing will be updated independently), and there's no distinction between "service party that defines the password" and "client party that is required to set matching password" - both parties are equivalent, and in order to have a working encrypted connection, they have to simply set the same passphrase. Otherwise the connection is rejected by default (see also [`SRTO_ENFORCEDENCRYPTION`](#SRTO_ENFORCEDENCRYPTION)).
 
 #### SRTO_PAYLOADSIZE
 
@@ -774,18 +764,12 @@ procedure of `srt_bind` and then `srt_connect` (or `srt_rendezvous`) to one anot
 | `SRTO_RETRANSMITALGO` | 1.4.2 | pre     | `int32_t` |        | 0       | [0, 1] | W   | GSD    |
 
 - Retransmission algorithm to use (SENDER option):
-   - 0 - Default (retransmit on every loss report).
-   - 1 - Reduced retransmissions (not more often than once per RTT); reduced 
-     bandwidth consumption.
+  - 0 - Default (retransmit on every loss report).
+  - 1 - Reduced retransmissions (not more often than once per RTT); reduced bandwidth consumption.
 
-- This option is effective only on the sending side. It influences the decision 
-as to whether particular reported lost packets should be retransmitted at a 
-certain time or not.
-
+- This option is effective only on the sending side. It influences the decision as to whether particular reported lost packets should be retransmitted at a certain time or not.
 
 [Return to list](#list-of-options)
-
-
 
 #### SRTO_REUSEADDR
 
